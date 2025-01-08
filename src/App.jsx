@@ -1,32 +1,42 @@
-import styled from "styled-components";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Dashboard from "./pages/Dashboard";
+import Bookings from "./pages/Bookings";
+import Hotels from "./pages/Hotels";
+import Users from "./pages/Users";
+import Settings from "./pages/Settings";
+import Account from "./pages/Account";
+import Login from "./pages/Login";
+import PageNotFound from "./pages/PageNotFound";
 import GlobalStyles from "./styles/GlobalStyles";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-import Heading from "./ui/Heading";
+import AppLayout from "./ui/AppLayout";
 
-// *sytled-components是一個CSS-in-JS的函式庫，可以讓我們在React元件中撰寫CSS樣式
-const StyledApp = styled.main`
-  background-color: #f0f0f0;
-  color: white;
-  padding: 20px;
-  margin: 20px;
-`;
+const queryClient = new QueryClient({
+  defaultOptions: {
+    staleTime: 60 * 1000,
+  },
+});
 
 function App() {
   return (
-    <>
-      {/* GlobalStyles组件不能接收children，只能是sibling */}
+    <QueryClientProvider client={queryClient}>
       <GlobalStyles />
-      <StyledApp>
-        <Heading as="h1">The Wild Oasis</Heading>
-        <Heading as="h2">Check in and out</Heading>
-        <Heading as="h3">Form</Heading>
-
-        <Button onClick={() => alert("Check in")}>Check in</Button>
-        <Input type="number" placeholder="Number of guests" />
-        <Input type="number" placeholder="Number of guests" />
-      </StyledApp>
-    </>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate repalce to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="hotels" element={<Hotels />} />
+            <Route path="users" element={<Users />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="account" element={<Account />} />
+          </Route>
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
