@@ -1,10 +1,11 @@
 import styled, { css } from "styled-components";
 
+// 酒店提交表单
 const Form = styled.form`
   ${(props) =>
     props.type !== "modal" &&
     css`
-      padding: 2.4rem 4rem;
+      padding: 2.2rem 4rem;
 
       /* Box */
       background-color: var(--color-grey-0);

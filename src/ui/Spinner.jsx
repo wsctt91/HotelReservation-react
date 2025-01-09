@@ -6,6 +6,7 @@ const rotate = keyframes`
   }
 `;
 
+// 加载器
 const Spinner = styled.div`
   margin: 4.8rem auto;
 
