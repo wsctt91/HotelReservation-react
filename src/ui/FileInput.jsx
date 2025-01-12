@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 // attrs方法表示为input元素添加type属性，值为file，这样就不用在组件中再次指定type属性了
+// attrs({ type: "file" })表示为input元素添加type属性，值为file
 const FileInput = styled.input.attrs({ type: "file" })`
   font-size: 1.4rem;
   border-radius: var(--border-radius-sm);

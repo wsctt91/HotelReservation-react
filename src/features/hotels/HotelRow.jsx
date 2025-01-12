@@ -3,6 +3,9 @@ import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteHotel } from "../../services/apiHotels";
 import toast from "../../../node_modules/react-hot-toast/src/index";
+import { useState } from "react";
+import CreateHotelForm from "./CreateHotelForm";
+import PropTypes from "prop-types";
 
 const TableRow = styled.div`
   display: grid;
@@ -45,6 +48,7 @@ const Discount = styled.div`
 
 // 酒店列表 -> row
 function HotelRow({ hotel }) {
+  const [showForm, setShowForm] = useState(false);
   const { id, name, maxCapacity, regularPrice, discount, image } = hotel;
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useMutation({
@@ -60,17 +64,27 @@ function HotelRow({ hotel }) {
   });
 
   return (
-    <TableRow role="row">
-      <Img src={image} />
-      <Hotel>{name}</Hotel>
-      <div>最大{maxCapacity}名様まで宿泊可能</div>
-      <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
-      <button onClick={() => mutate(id)} disabled={isLoading}>
-        Delete
-      </button>
-    </TableRow>
+    <>
+      <TableRow role="row">
+        <Img src={image} />
+        <Hotel>{name}</Hotel>
+        <div>最大{maxCapacity}名様まで宿泊可能</div>
+        <Price>{formatCurrency(regularPrice)}</Price>
+        <Discount>{formatCurrency(discount)}</Discount>
+        <div>
+          <button onClick={() => setShowForm((show) => !show)}>編集</button>
+          <button onClick={() => mutate(id)} disabled={isLoading}>
+            Delete
+          </button>
+        </div>
+      </TableRow>
+      {showForm && <CreateHotelForm hotelToEdit={hotel} />}
+    </>
   );
 }
+
+HotelRow.propTypes = {
+  hotel: PropTypes.object.isRequired,
+};
 
 export default HotelRow;
