@@ -28,7 +28,7 @@ export async function CreateEditHotel(newHotel, id) {
   );
   const imagePath = hasImagePath
     ? newHotel.image
-    : `${supabaseUrl}/storage/v1/object/public/hotel-images/${imageName}`;
+    : `${supabaseUrl}/storage/v1/object/public/hotel-images/public/${imageName}`;
 
   // 01. 创建酒店信息
   let query = supabase.from("hotels");
@@ -44,7 +44,11 @@ export async function CreateEditHotel(newHotel, id) {
     console.error(error);
     throw new Error("Failed to create hotel");
   }
+
   // 02. 更新酒店图片, 上传图片到supabase数据库
+  if (hasImagePath) {
+    return data;
+  }
   // !需要修改 supabase-API改变
   const { error: storageError } = await supabase.storage
     .from("hotel-images")

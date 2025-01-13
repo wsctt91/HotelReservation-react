@@ -13,7 +13,6 @@ export function useEditHotel() {
       queryClient.invalidateQueries({
         queryKey: ["hotels"],
       });
-      reset();
     },
     onError: (err) => toast.error(err.message),
   });

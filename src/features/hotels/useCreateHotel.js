@@ -7,13 +7,14 @@ export function useCreateHotel() {
   // 创建酒店信息
   const { mutate: createHotel, isLoading: isCreating } = useMutation({
     mutationFn: CreateEditHotel,
+    // 创建成功时
     onSuccess: () => {
       toast.success("Hotel created successfully");
       queryClient.invalidateQueries({
         queryKey: ["hotels"],
       });
-      reset();
     },
+    // 创建失败时
     onError: (err) => toast.error(err.message),
   });
 

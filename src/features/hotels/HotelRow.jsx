@@ -3,7 +3,13 @@ import styled from "styled-components";
 import CreateHotelForm from "./CreateHotelForm";
 import { formatCurrency } from "../../utils/helpers";
 import { useDeleteHotel } from "./useDeleteHotel";
+import {
+  HiDocumentDuplicate,
+  HiOutlinePencilAlt,
+  HiOutlineTrash,
+} from "react-icons/hi";
 import PropTypes from "prop-types";
+import { useCreateHotel } from "./useCreateHotel";
 
 const TableRow = styled.div`
   display: grid;
@@ -49,7 +55,21 @@ function HotelRow({ hotel }) {
   const [showForm, setShowForm] = useState(false);
   // 删除酒店 导入
   const { isDeleteing, deleteHotel } = useDeleteHotel();
-  const { id, name, maxCapacity, regularPrice, discount, image } = hotel;
+  const { isCreating, createHotel } = useCreateHotel();
+  const { id, name, maxCapacity, regularPrice, discount, image, description } =
+    hotel;
+
+  // Duplicate 复制酒店信息
+  function handleDuplicate() {
+    createHotel({
+      name: `Copy of ${name}`,
+      maxCapacity,
+      regularPrice,
+      discount,
+      image,
+      description,
+    });
+  }
 
   return (
     <>
@@ -64,9 +84,14 @@ function HotelRow({ hotel }) {
           <span>&mdash;</span>
         )}
         <div>
-          <button onClick={() => setShowForm((show) => !show)}>編集</button>
+          <button onClick={handleDuplicate} disabled={isCreating}>
+            <HiDocumentDuplicate />
+          </button>
+          <button onClick={() => setShowForm((show) => !show)}>
+            <HiOutlinePencilAlt />
+          </button>
           <button onClick={() => deleteHotel(id)} disabled={isDeleteing}>
-            Delete
+            <HiOutlineTrash />
           </button>
         </div>
       </TableRow>
