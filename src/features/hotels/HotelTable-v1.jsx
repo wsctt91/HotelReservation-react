@@ -1,7 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
+import { getHotels } from "../../services/apiHotels";
 import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
 import HotelRow from "./HotelRow";
-import useHotels from "./useHotels";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -29,8 +30,16 @@ const TableHeader = styled.header`
 
 // 酒店表格
 function HotelTable() {
-  // 使用useQuery钩子获取酒店列表 导入
-  const { isLoading, hotels } = useHotels();
+  // 使用useQuery钩子获取酒店列表
+  const {
+    isLoading,
+    data: hotels,
+    error,
+  } = useQuery({
+    queryKey: ["hotels"],
+    queryFn: getHotels,
+  });
+  // console.log(x);
 
   if (isLoading) {
     return <Spinner />;

@@ -1,18 +1,22 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-
-import PropTypes from "prop-types";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { CreateEditHotel } from "../../services/apiHotels";
+import { useCreateHotel } from "./useCreateHotel";
+import { useEditHotel } from "./useEditHotel";
 
 // 页面中生成一个表单，用于创建酒店
 function CreateHotelForm({ hotelToEdit = {} }) {
+  // 创建酒店信息 导入
+  const { isCreating, createHotel } = useCreateHotel();
+  // 编辑酒店信息 导入
+  const { isEditing, editHotel } = useEditHotel();
+  const isWorking = isCreating || isEditing; // 判断是否正在创建或编辑酒店信息
+
   const { id: editId, ...editValues } = hotelToEdit;
   const isEditSession = Boolean(editId);
 
@@ -22,35 +26,6 @@ function CreateHotelForm({ hotelToEdit = {} }) {
   });
   const { errors } = formState;
   // console.log(errors);
-
-  const queryClient = useQueryClient();
-  // 创建酒店信息
-  const { mutate: createHotel, isLoading: isCreating } = useMutation({
-    mutationFn: CreateEditHotel,
-    onSuccess: () => {
-      toast.success("Hotel created successfully");
-      queryClient.invalidateQueries({
-        queryKey: ["hotels"],
-      });
-      reset();
-    },
-    onError: (err) => toast.error(err.message),
-  });
-
-  // 编辑酒店信息
-  const { mutate: editHotel, isLoading: isEditing } = useMutation({
-    mutationFn: ({ newHotelData, id }) => CreateEditHotel(newHotelData, id),
-    onSuccess: () => {
-      toast.success("Hotel created successfully");
-      queryClient.invalidateQueries({
-        queryKey: ["hotels"],
-      });
-      reset();
-    },
-    onError: (err) => toast.error(err.message),
-  });
-
-  const isWorking = isCreating || isEditing; // 判断是否正在创建或编辑酒店信息
 
   // 提交表单
   function onSubmit(data) {
@@ -62,7 +37,16 @@ function CreateHotelForm({ hotelToEdit = {} }) {
         newHotelData: { ...data, image },
         id: editId,
       });
-    else createHotel({ ...data, image: image });
+    else
+      createHotel(
+        { ...data, image: image },
+        {
+          onSuccess: (data) => {
+            console.log(data);
+            reset();
+          },
+        }
+      );
   }
   // 提交表单错误处理
   function onError() {
@@ -124,7 +108,10 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           })}
         />
       </FormRow>
-      <FormRow label="Description" error={errors?.description?.message}>
+      <FormRow
+        label="Description for website"
+        error={errors?.description?.message}
+      >
         <Textarea
           id="description"
           disabled={isWorking}

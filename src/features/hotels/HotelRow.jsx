@@ -1,10 +1,8 @@
-import styled from "styled-components";
-import { formatCurrency } from "../../utils/helpers";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteHotel } from "../../services/apiHotels";
-import toast from "../../../node_modules/react-hot-toast/src/index";
 import { useState } from "react";
+import styled from "styled-components";
 import CreateHotelForm from "./CreateHotelForm";
+import { formatCurrency } from "../../utils/helpers";
+import { useDeleteHotel } from "./useDeleteHotel";
 import PropTypes from "prop-types";
 
 const TableRow = styled.div`
@@ -49,19 +47,9 @@ const Discount = styled.div`
 // 酒店列表 -> row
 function HotelRow({ hotel }) {
   const [showForm, setShowForm] = useState(false);
+  // 删除酒店 导入
+  const { isDeleteing, deleteHotel } = useDeleteHotel();
   const { id, name, maxCapacity, regularPrice, discount, image } = hotel;
-  const queryClient = useQueryClient();
-  const { mutate, isLoading } = useMutation({
-    mutationFn: deleteHotel, // 删除酒店
-    // !onSuccess表示在删除酒店成功后执行的回调函数
-    onSuccess: () => {
-      toast.success("Hotel deleted successfully");
-      queryClient.invalidateQueries({
-        queryKey: ["hotels"], // 使得酒店列表重新获取数据
-      });
-    },
-    onError: (err) => toast.error(err.message),
-  });
 
   return (
     <>
@@ -70,10 +58,14 @@ function HotelRow({ hotel }) {
         <Hotel>{name}</Hotel>
         <div>最大{maxCapacity}名様まで宿泊可能</div>
         <Price>{formatCurrency(regularPrice)}</Price>
-        <Discount>{formatCurrency(discount)}</Discount>
+        {discount ? (
+          <Discount>{formatCurrency(discount)}</Discount>
+        ) : (
+          <span>&mdash;</span>
+        )}
         <div>
           <button onClick={() => setShowForm((show) => !show)}>編集</button>
-          <button onClick={() => mutate(id)} disabled={isLoading}>
+          <button onClick={() => deleteHotel(id)} disabled={isDeleteing}>
             Delete
           </button>
         </div>
