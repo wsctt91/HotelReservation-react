@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 export function useCreateHotel() {
   const queryClient = useQueryClient();
+
   // 创建酒店信息
   const { mutate: createHotel, isLoading: isCreating } = useMutation({
     mutationFn: CreateEditHotel,

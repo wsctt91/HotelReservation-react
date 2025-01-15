@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
-import { Toaster } from "../node_modules/react-hot-toast/src/components/toaster";
+import { Toaster } from "react-hot-toast";
 
 // QueryClient表示React Query的客户端，它管理着所有的缓存、查询和变异。
 const queryClient = new QueryClient({

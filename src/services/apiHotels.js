@@ -2,7 +2,7 @@
 import supabase, { supabaseUrl } from "./supabase";
 
 // *酒店信息API
-// 用来获取酒店列表
+// 从supabase中获取酒店信息
 export async function getHotels() {
   // 从supabase中获取的API
   const { data, error } = await supabase.from("hotels").select("*");

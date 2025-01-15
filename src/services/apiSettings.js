@@ -1,5 +1,6 @@
 import supabase from "./supabase";
 
+// 从 supabase 中获取 settings
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
@@ -10,7 +11,7 @@ export async function getSettings() {
   return data;
 }
 
-// We expect a newSetting object that looks like {setting: newValue}
+// 更新 settings
 export async function updateSetting(newSetting) {
   const { data, error } = await supabase
     .from("settings")

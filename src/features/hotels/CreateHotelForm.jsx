@@ -55,7 +55,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <FormRow label="Hotel name" error={errors?.name?.message}>
+      <FormRow label="部屋タイプ" error={errors?.name?.message}>
         <Input
           type="text"
           id="name"
@@ -65,7 +65,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           })}
         />
       </FormRow>
-      <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
+      <FormRow label="宿泊人数" error={errors?.maxCapacity?.message}>
         <Input
           type="number"
           id="maxCapacity"
@@ -80,7 +80,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           })}
         />
       </FormRow>
-      <FormRow label="Regular Price" error={errors?.regularPrice?.message}>
+      <FormRow label="予約料金" error={errors?.regularPrice?.message}>
         <Input
           type="number"
           id="regularPrice"
@@ -94,7 +94,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           })}
         />
       </FormRow>
-      <FormRow label="Discount" error={errors?.discount?.message}>
+      <FormRow label="割引価格" error={errors?.discount?.message}>
         <Input
           type="number"
           id="discount"
@@ -108,10 +108,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           })}
         />
       </FormRow>
-      <FormRow
-        label="Description for website"
-        error={errors?.description?.message}
-      >
+      <FormRow label="部屋概要" error={errors?.description?.message}>
         <Textarea
           id="description"
           disabled={isWorking}
@@ -121,7 +118,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           })}
         />
       </FormRow>
-      <FormRow label="Room photo">
+      <FormRow label="部屋写真">
         <FileInput
           type="file"
           id="image"
