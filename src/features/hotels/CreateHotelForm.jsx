@@ -10,7 +10,7 @@ import { useCreateHotel } from "./useCreateHotel";
 import { useEditHotel } from "./useEditHotel";
 
 // 页面中生成一个表单，用于创建酒店
-function CreateHotelForm({ hotelToEdit = {} }) {
+function CreateHotelForm({ hotelToEdit = {}, onCloseModal }) {
   // 创建酒店信息 导入
   const { isCreating, createHotel } = useCreateHotel();
   // 编辑酒店信息 导入
@@ -33,17 +33,26 @@ function CreateHotelForm({ hotelToEdit = {} }) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
 
     if (isEditSession)
-      editHotel({
-        newHotelData: { ...data, image },
-        id: editId,
-      });
+      editHotel(
+        {
+          newHotelData: { ...data, image },
+          id: editId,
+        },
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
     else
       createHotel(
         { ...data, image: image },
         {
-          onSuccess: (data) => {
-            console.log(data);
+          onSuccess: () => {
+            // console.log(data);
             reset();
+            onCloseModal?.();
           },
         }
       );
@@ -54,14 +63,17 @@ function CreateHotelForm({ hotelToEdit = {} }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onCloseModal ? "modal" : "regular"}
+    >
       <FormRow label="部屋タイプ" error={errors?.name?.message}>
         <Input
           type="text"
           id="name"
           // 添加验证规则
           {...register("name", {
-            required: "This field is required",
+            required: "この項目は必須です",
           })}
         />
       </FormRow>
@@ -72,7 +84,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           disabled={isWorking}
           // 添加验证规则
           {...register("maxCapacity", {
-            required: "This field is required",
+            required: "この項目は必須です",
             min: {
               value: 1,
               message: "Capacity must be at least 1",
@@ -86,10 +98,10 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           id="regularPrice"
           disabled={isWorking}
           {...register("regularPrice", {
-            required: "This field is required",
+            required: "この項目は必須です",
             min: {
               value: 1,
-              message: "Price must be at least 1",
+              message: "価格は1$以上である必要があります",
             },
           })}
         />
@@ -101,10 +113,10 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           disabled={isWorking}
           defaultValue={0}
           {...register("discount", {
-            required: "This field is required",
+            required: "この項目は必須です",
             validate: (value) =>
               value <= getValues().regularPrice ||
-              "Discount must be less than regular price",
+              "割引は通常価格より低くなければなりません",
           })}
         />
       </FormRow>
@@ -114,7 +126,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           disabled={isWorking}
           defaultValue=""
           {...register("description", {
-            required: "This field is required",
+            required: "この項目は必須です",
           })}
         />
       </FormRow>
@@ -124,13 +136,18 @@ function CreateHotelForm({ hotelToEdit = {} }) {
           id="image"
           accept="image/*"
           {...register("image", {
-            required: isEditSession ? false : "This field is required",
+            required: isEditSession ? false : "この項目は必須です",
           })}
         />
       </FormRow>
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          // 点击按钮时，关闭模态框，如果没有传递onCloseModal，则不执行
+          onClick={() => onCloseModal?.()}
+        >
           リセット
         </Button>
         <Button type="submit" disabled={isWorking}>
@@ -143,6 +160,7 @@ function CreateHotelForm({ hotelToEdit = {} }) {
 
 CreateHotelForm.propTypes = {
   hotelToEdit: PropTypes.object,
+  onCloseModal: PropTypes.func,
 };
 
 export default CreateHotelForm;
