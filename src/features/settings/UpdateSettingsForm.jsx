@@ -35,7 +35,7 @@ function UpdateSettingsForm() {
 
   return (
     <Form>
-      <FormRow label="Minimum nights/booking">
+      <FormRow label="最小宿泊数">
         <Input
           type="number"
           id="min-nights"
@@ -45,7 +45,7 @@ function UpdateSettingsForm() {
         />
       </FormRow>
 
-      <FormRow label="Maximum nights/booking">
+      <FormRow label="最大宿泊数">
         <Input
           type="number"
           id="max-nights"
@@ -55,7 +55,7 @@ function UpdateSettingsForm() {
         />
       </FormRow>
 
-      <FormRow label="Maximum guests/booking">
+      <FormRow label="最大ゲスト数">
         <Input
           type="number"
           id="max-guests"
@@ -65,7 +65,7 @@ function UpdateSettingsForm() {
         />
       </FormRow>
 
-      <FormRow label="Breakfast price">
+      <FormRow label="朝食の価格">
         <Input
           type="number"
           id="breakfast-price"
