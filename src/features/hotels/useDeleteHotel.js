@@ -11,7 +11,7 @@ export function useDeleteHotel() {
     mutationFn: deleteHoteApi, // 删除酒店
     // !onSuccess表示在删除酒店成功后执行的回调函数
     onSuccess: () => {
-      toast.success("Hotel deleted successfully");
+      toast.success("ホテルは削除されました");
       queryClient.invalidateQueries({
         queryKey: ["hotels"], // 使得酒店列表重新获取数据
       });

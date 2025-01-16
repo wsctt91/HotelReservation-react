@@ -10,7 +10,7 @@ export function useCreateHotel() {
     mutationFn: CreateEditHotel,
     // 创建成功时
     onSuccess: () => {
-      toast.success("Hotel created successfully");
+      toast.success("ホテルが作成されました");
       queryClient.invalidateQueries({
         queryKey: ["hotels"],
       });

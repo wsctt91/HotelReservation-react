@@ -19,7 +19,7 @@ export async function CreateEditHotel(newHotel, id) {
   /*   supabase中图片的URL
   https://hgfvypbmvfxhzpsywxpx.supabase.co/storage/v1/object/public/hotel-image/hotel-001.jpg */
 
-  console.log(newHotel, id);
+  // console.log(newHotel, id);
   const hasImagePath = newHotel.image?.startsWith?.(supabaseUrl);
   // 从supabase中获取的API
   const imageName = `${Math.random()}-${newHotel.image.name}`.replaceAll(

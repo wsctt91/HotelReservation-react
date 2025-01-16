@@ -9,7 +9,7 @@ export function useEditHotel() {
   const { mutate: editHotel, isLoading: isEditing } = useMutation({
     mutationFn: ({ newHotelData, id }) => CreateEditHotel(newHotelData, id),
     onSuccess: () => {
-      toast.success("Hotel created successfully");
+      toast.success("ホテル情報が更新されました");
       queryClient.invalidateQueries({
         queryKey: ["hotels"],
       });

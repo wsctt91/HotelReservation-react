@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import CreateHotelForm from "./CreateHotelForm";
 import { formatCurrency } from "../../utils/helpers";
-import { useCreateHotel } from "./useCreateHotel";
 import { useDeleteHotel } from "./useDeleteHotel";
 import {
   HiDocumentDuplicate,
@@ -9,10 +8,10 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import PropTypes from "prop-types";
+import { useCreateHotel } from "./useCreateHotel";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
-import MenusProvider from "../../ui/Menus";
 
 /* const TableRow = styled.div`
   display: grid;
@@ -57,7 +56,7 @@ const Discount = styled.div`
 function HotelRow({ hotel }) {
   // 删除酒店 导入
   const { isDeleting, deleteHotel } = useDeleteHotel();
-  const { createHotel } = useCreateHotel();
+  const { isCreating, createHotel } = useCreateHotel();
   const {
     id: hotelId,
     name,
@@ -92,47 +91,34 @@ function HotelRow({ hotel }) {
         <span>&mdash;</span>
       )}
       <div>
-        {/* 复合组件的复用，让编辑和删除界面弹出 */}
+        <button onClick={handleDuplicate} disabled={isCreating}>
+          <HiDocumentDuplicate />
+        </button>
+
+        {/* 复合组件的复用 */}
         <Modal>
-          {/* 菜单栏选项卡 */}
-          <MenusProvider.Menu>
-            <MenusProvider.Toggle id={hotelId} />
+          <Modal.Open opens="edit">
+            <button>
+              <HiOutlinePencilAlt />
+            </button>
+          </Modal.Open>
+          <Modal.Window name="edit">
+            <CreateHotelForm hotelToEdit={hotel} />
+          </Modal.Window>
 
-            <MenusProvider.List id={hotelId}>
-              <MenusProvider.Button
-                icon={<HiDocumentDuplicate />}
-                onClick={handleDuplicate}
-              >
-                コピー
-              </MenusProvider.Button>
-
-              <Modal.Open opens="edit">
-                <MenusProvider.Button icon={<HiOutlinePencilAlt />}>
-                  編集
-                </MenusProvider.Button>
-              </Modal.Open>
-
-              <Modal.Open opens="delete">
-                <MenusProvider.Button icon={<HiOutlineTrash />}>
-                  削除
-                </MenusProvider.Button>
-              </Modal.Open>
-            </MenusProvider.List>
-
-            {/* 编辑弹出框 */}
-            <Modal.Window name="edit">
-              <CreateHotelForm hotelToEdit={hotel} />
-            </Modal.Window>
-
-            {/* 删除弹出框 */}
-            <Modal.Window name="delete">
-              <ConfirmDelete
-                resourceName="ルーム"
-                disabled={isDeleting}
-                onConfirm={() => deleteHotel(hotelId)}
-              />
-            </Modal.Window>
-          </MenusProvider.Menu>
+          <Modal.Open opens="delete">
+            <button>
+              <HiOutlineTrash />
+            </button>
+          </Modal.Open>
+          <Modal.Window name="delete">
+            {/* 询问是否删除 */}
+            <ConfirmDelete
+              resourceName="ルーム"
+              disabled={isDeleting}
+              onConfirm={() => deleteHotel(hotelId)}
+            />
+          </Modal.Window>
         </Modal>
       </div>
     </Table.Row>
