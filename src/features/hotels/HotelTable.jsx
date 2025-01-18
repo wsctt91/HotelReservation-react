@@ -1,10 +1,10 @@
 import Spinner from "../../ui/Spinner";
 import HotelRow from "./HotelRow";
-import useHotels from "./useHotels";
+import { useHotels } from "./useHotels";
 import Table from "../../ui/Table";
 import MenusProvider from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
-import { HiArrowLongRight } from "react-icons/hi2";
+import Empty from "../../ui/Empty";
 
 /* const TableHeader = styled.header`
   display: grid;
@@ -29,6 +29,9 @@ function HotelTable() {
 
   if (isLoading) {
     return <Spinner />;
+  }
+  if (!hotels.length) {
+    return <Empty resourceName="hotels" />;
   }
 
   // FILTER

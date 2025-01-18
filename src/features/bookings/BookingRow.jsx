@@ -7,7 +7,7 @@ import Table from "../../ui/Table";
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 
-const Cabin = styled.div`
+const Hotel = styled.div`
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-grey-600);
@@ -45,9 +45,10 @@ function BookingRow({
     totalPrice,
     status,
     guests: { fullName: guestName, email },
-    cabins: { name: cabinName },
+    hotels: { name: hotelname },
   },
 }) {
+  // 确认状态对应的标签颜色
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
@@ -56,13 +57,11 @@ function BookingRow({
 
   return (
     <Table.Row>
-      <Cabin>{cabinName}</Cabin>
-
+      <Hotel>{hotelname}</Hotel>s
       <Stacked>
         <span>{guestName}</span>
         <span>{email}</span>
       </Stacked>
-
       <Stacked>
         <span>
           {isToday(new Date(startDate))
@@ -75,9 +74,7 @@ function BookingRow({
           {format(new Date(endDate), "MMM dd yyyy")}
         </span>
       </Stacked>
-
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
       <Amount>{formatCurrency(totalPrice)}</Amount>
     </Table.Row>
   );
