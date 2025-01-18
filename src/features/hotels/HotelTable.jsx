@@ -3,6 +3,8 @@ import HotelRow from "./HotelRow";
 import useHotels from "./useHotels";
 import Table from "../../ui/Table";
 import MenusProvider from "../../ui/Menus";
+import { useSearchParams } from "react-router-dom";
+import { HiArrowLongRight } from "react-icons/hi2";
 
 /* const TableHeader = styled.header`
   display: grid;
@@ -23,10 +25,34 @@ import MenusProvider from "../../ui/Menus";
 function HotelTable() {
   // 使用useQuery hook获取酒店列表 导入
   const { isLoading, hotels } = useHotels();
+  const [searchParams] = useSearchParams();
 
   if (isLoading) {
     return <Spinner />;
   }
+
+  // FILTER
+  const filterValue = searchParams.get("discount") || "all";
+  // console.log(filterValue);
+
+  let filteredHotels;
+  if (filterValue === "all") filteredHotels = hotels;
+  if (filterValue === "no-discount")
+    filteredHotels = hotels.filter((hotel) => hotel.discount === 0);
+  if (filterValue === "with-discount")
+    filteredHotels = hotels.filter((hotel) => hotel.discount > 0);
+
+  // SORT
+  const sortBy = searchParams.get("sortBy") || "starDate-asc";
+  const [field, direction] = sortBy.split("-");
+  // console.log(field, direction);
+  // 如果方向是升序，modifier为1，否则为-1
+  const modifier = direction === "asc" ? 1 : -1;
+  const sortedHotels = filteredHotels.sort(
+    (a, b) => (a[field] - b[field]) * modifier
+  );
+  // console.log(modifier, sortedHotels);
+
   // *复合组件的使用
   return (
     <MenusProvider>
@@ -42,7 +68,8 @@ function HotelTable() {
         </Table.Header>
 
         <Table.Body
-          data={hotels}
+          // data={filteredHotels}
+          data={sortedHotels}
           render={(hotel) => <HotelRow hotel={hotel} key={hotel.id} />}
         />
       </Table>

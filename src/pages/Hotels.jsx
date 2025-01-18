@@ -2,6 +2,7 @@ import HotelTable from "../features/hotels/HotelTable";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
 import AddHotel from "../features/hotels/AddHotel";
+import HotelTableOperations from "../features/hotels/HotelTableOperations";
 
 // 酒店页面
 function Hotels() {
@@ -14,7 +15,8 @@ function Hotels() {
     <>
       <Row type="horizontal">
         <Heading as="h1">プレミアム部屋リスト</Heading>
-        <p>Filter / Sort</p>
+        {/* Filter & Sort部分 */}
+        <HotelTableOperations />
       </Row>
       <Row>
         <HotelTable />

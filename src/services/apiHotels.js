@@ -42,7 +42,7 @@ export async function CreateEditHotel(newHotel, id) {
 
   if (error) {
     console.error(error);
-    throw new Error("Failed to create hotel");
+    throw new Error("ホテルの作成に失敗しました");
   }
 
   // 02. 更新酒店图片, 上传图片到supabase数据库
@@ -62,7 +62,7 @@ export async function CreateEditHotel(newHotel, id) {
   if (storageError) {
     await supabase.from("hotels").delete().eq("id", data.id);
     console.error(storageError);
-    throw new Error("Hotel image upload failed and hotel was deleted");
+    throw new Error("アップロードに失敗し、ホテルが削除されました");
   }
   return data;
 }
@@ -74,7 +74,7 @@ export async function deleteHotel(id) {
 
   if (error) {
     console.error(error);
-    throw new Error("Failed to delete hotel");
+    throw new Error("ホテルの削除に失敗しました");
   }
   return data;
 }
