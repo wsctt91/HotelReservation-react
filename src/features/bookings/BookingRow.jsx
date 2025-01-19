@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { format, isToday } from "date-fns";
-
 import Tag from "../../ui/Tag";
 import Table from "../../ui/Table";
-
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 
@@ -45,7 +43,7 @@ function BookingRow({
     totalPrice,
     status,
     guests: { fullName: guestName, email },
-    hotels: { name: hotelname },
+    hotels: { name: hotelName },
   },
 }) {
   // 确认状态对应的标签颜色
@@ -57,7 +55,7 @@ function BookingRow({
 
   return (
     <Table.Row>
-      <Hotel>{hotelname}</Hotel>s
+      <Hotel>{hotelName}</Hotel>
       <Stacked>
         <span>{guestName}</span>
         <span>{email}</span>

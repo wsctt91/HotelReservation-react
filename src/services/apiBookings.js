@@ -4,9 +4,7 @@ import supabase from "./supabase";
 export async function getBookings() {
   const { data, error } = await supabase
     .from("bookings")
-    .select(
-      "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, hotels(name), guests(fullName, email)"
-    );
+    .select("*, guests(fullName, email), hotels(name)");
 
   if (error) {
     console.error(error);
