@@ -8,7 +8,7 @@ function HotelTableOperations() {
       {/* 过滤 */}
       <Filter
         filterField="discount"
-        filterOptions={[
+        options={[
           { value: "all", label: "全部" },
           { value: "no-discount", label: "割引なし" },
           { value: "with-discount", label: "割引あり" },
@@ -17,8 +17,8 @@ function HotelTableOperations() {
       {/* 筛选 */}
       <SortBy
         options={[
-          { value: "name-asc", label: "並び替え" },
-          { value: "name-desc", label: "並び替え" },
+          { value: "name-asc", label: "並び替え(高い順)" },
+          { value: "name-desc", label: "並び替え(低い順)" },
           { value: "regularPrice-asc", label: "価格の安い順" },
           { value: "regularPrice-desc", label: "価格の高い順" },
           { value: "maxCapacity-asc", label: "定員の少ない順" },

@@ -2,6 +2,7 @@ import SortBy from "../../ui/SortBy";
 import Filter from "../../ui/Filter";
 import TableOperations from "../../ui/TableOperations";
 
+// 筛选&排序 Section
 function BookingTableOperations() {
   return (
     <TableOperations>
@@ -17,13 +18,13 @@ function BookingTableOperations() {
 
       <SortBy
         options={[
-          { value: "startDate-desc", label: "Sort by date (recent first)" },
-          { value: "startDate-asc", label: "Sort by date (earlier first)" },
+          { value: "startDate-desc", label: "日付で並べ替え (新しい順)" },
+          { value: "startDate-asc", label: "日付で並べ替え (古い順)" },
           {
             value: "totalPrice-desc",
-            label: "Sort by amount (high first)",
+            label: "料金で並べ替え (高い順)",
           },
-          { value: "totalPrice-asc", label: "Sort by amount (low first)" },
+          { value: "totalPrice-asc", label: "料金で並べ替え (低い順)" },
         ]}
       />
     </TableOperations>

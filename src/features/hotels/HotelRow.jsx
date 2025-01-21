@@ -55,7 +55,6 @@ const Discount = styled.div`
 
 // 酒店列表 -> row
 function HotelRow({ hotel }) {
-  // 删除酒店 导入
   const { isDeleting, deleteHotel } = useDeleteHotel();
   const { createHotel } = useCreateHotel();
   const {

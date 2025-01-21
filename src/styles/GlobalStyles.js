@@ -3,6 +3,22 @@ import { createGlobalStyle } from "styled-components";
 // *使用createGlobalStyle函式來建立全域樣式
 const GlobalStyles = createGlobalStyle`
 :root {
+
+  --color-blue-100: #075985;
+  --color-blue-700: #e0f2fe;
+  --color-green-100: #166534;
+  --color-green-700: #dcfce7;
+  --color-yellow-100: #854d0e;
+  --color-yellow-700: #fef9c3;
+  --color-silver-100: #374151;
+  --color-silver-700: #f3f4f6;
+  --color-indigo-100: #3730a3;
+  --color-indigo-700: #e0e7ff;
+
+  --color-red-100: #fee2e2;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  
   /* Indigo */
   --color-brand-50: #eef2ff;
   --color-brand-100: #e0e7ff;
@@ -158,21 +174,6 @@ FOR DARK MODE
 --color-grey-700: #e5e7eb;
 --color-grey-800: #f3f4f6;
 --color-grey-900: #f9fafb;
-
---color-blue-100: #075985;
---color-blue-700: #e0f2fe;
---color-green-100: #166534;
---color-green-700: #dcfce7;
---color-yellow-100: #854d0e;
---color-yellow-700: #fef9c3;
---color-silver-100: #374151;
---color-silver-700: #f3f4f6;
---color-indigo-100: #3730a3;
---color-indigo-700: #e0e7ff;
-
---color-red-100: #fee2e2;
---color-red-700: #b91c1c;
---color-red-800: #991b1b;
 
 --backdrop-color: rgba(0, 0, 0, 0.3);
 

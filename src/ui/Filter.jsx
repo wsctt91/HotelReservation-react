@@ -36,11 +36,12 @@ const FilterButton = styled.button`
 `;
 
 // 修改为可复用的Filter组件
-function Filter({ filterField, filterOptions }) {
+/* function Filter({ filterField, filterOptions }) {
   // *useSearchParams hook是用来获取和更新URL中的查询参数的
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter =
-    searchParams.get(filterField) || filterOptions.at(0).value;
+    searchParams.get(filterField) ||
+    (filterOptions?.length ? filterOptions.at(0).value : null);
 
   function handleClick(value) {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -50,11 +51,21 @@ function Filter({ filterField, filterOptions }) {
       newSearchParams.set(filterField, value);
     }
     setSearchParams(newSearchParams);
+  } */
+
+function Filter({ filterField, options }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentFilter = searchParams.get(filterField) || options.at(0).value;
+
+  function handleClick(value) {
+    searchParams.set(filterField, value);
+    if (searchParams.get("page")) searchParams.set("page", 1);
+    setSearchParams(searchParams);
   }
 
   return (
     <StyledFilter>
-      {filterOptions.map((option) => (
+      {options.map((option) => (
         <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}
