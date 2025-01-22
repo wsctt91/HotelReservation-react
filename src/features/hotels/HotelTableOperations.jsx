@@ -2,6 +2,7 @@ import Filter from "../../ui/Filter";
 import SortBy from "../../ui/SortBy";
 import TableOperations from "../../ui/TableOperations";
 
+// 酒店详情筛选&排序 Section
 function HotelTableOperations() {
   return (
     <TableOperations>

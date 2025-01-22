@@ -60,6 +60,7 @@ const Empty = styled.p`
   margin: 2.4rem;
 `;
 
+// *Context API
 const TableContext = createContext();
 // 复合组件用来渲染房间列表
 function Table({ columns, children }) {

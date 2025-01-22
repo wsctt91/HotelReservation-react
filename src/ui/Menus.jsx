@@ -64,7 +64,7 @@ const StyledButton = styled.button`
   }
 `;
 
-// hotel Page -> 右侧弹出选项卡
+// 列表 -> 右侧弹出选项卡
 const MenusContext = createContext();
 
 function MenusProvider({ children }) {

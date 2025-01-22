@@ -6,10 +6,8 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineHomeModern,
 } from "react-icons/hi2";
-
 import DataItem from "../../ui/DataItem";
 import { Flag } from "../../ui/Flag";
-
 import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
 
 const StyledBookingDataBox = styled.section`
@@ -101,7 +99,7 @@ const Footer = styled.footer`
   text-align: right;
 `;
 
-// A purely presentational component
+// 预定详情数据框
 function BookingDataBox({ booking }) {
   const {
     created_at,
@@ -125,7 +123,7 @@ function BookingDataBox({ booking }) {
         <div>
           <HiOutlineHomeModern />
           <p>
-            {numNights} nights in Hotel <span>{hotelName}</span>
+            {numNights} ホテル宿泊 <span>{hotelName}</span>
           </p>
         </div>
 
@@ -147,38 +145,39 @@ function BookingDataBox({ booking }) {
           <span>&bull;</span>
           <p>{email}</p>
           <span>&bull;</span>
-          <p>National ID {nationalID}</p>
+          <p> 国民ID {nationalID}</p>
         </Guest>
 
         {observations && (
           <DataItem
             icon={<HiOutlineChatBubbleBottomCenterText />}
-            label="Observations"
+            label="ご意見を提出ください"
           >
             {observations}
           </DataItem>
         )}
 
-        <DataItem icon={<HiOutlineCheckCircle />} label="Breakfast included?">
+        <DataItem
+          icon={<HiOutlineCheckCircle />}
+          label="朝食は含まれていますか？"
+        >
           {hasBreakfast ? "Yes" : "No"}
         </DataItem>
 
         <Price isPaid={isPaid}>
-          <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
+          <DataItem icon={<HiOutlineCurrencyDollar />} label={`合計金額`}>
             {formatCurrency(totalPrice)}
-
             {hasBreakfast &&
-              ` (${formatCurrency(hotelPrice)} hotel + ${formatCurrency(
+              ` (${formatCurrency(hotelPrice)} 宿泊 + ${formatCurrency(
                 extrasPrice
-              )} breakfast)`}
+              )} 朝食)`}
           </DataItem>
-
-          <p>{isPaid ? "Paid" : "Will pay at property"}</p>
+          <p>{isPaid ? "支払済み" : "来店支払う"}</p>
         </Price>
       </Section>
 
       <Footer>
-        <p>Booked {format(new Date(created_at), "EEE, MMM dd yyyy, p")}</p>
+        <p>予約時間 {format(new Date(created_at), "EEE, MMM dd yyyy, p")}</p>
       </Footer>
     </StyledBookingDataBox>
   );

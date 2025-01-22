@@ -13,6 +13,7 @@ import PageNotFound from "./pages/PageNotFound";
 import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
 import { Toaster } from "react-hot-toast";
+import Booking from "./ui/Booking";
 
 // QueryClient表示React Query的客户端，它管理着所有的缓存、查询和变异。
 const queryClient = new QueryClient({
@@ -35,6 +36,8 @@ function App() {
             <Route index element={<Navigate repalce to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="bookings" element={<Bookings />} />
+            {/* 个人页面 */}
+            <Route path="bookings/:bookingId" element={<Booking />} />
             <Route path="hotels" element={<Hotels />} />
             <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />

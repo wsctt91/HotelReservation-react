@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { format, isToday } from "date-fns";
 import Tag from "../../ui/Tag";
 import Table from "../../ui/Table";
+import Menus from "../../ui/Menus";
+import { HiOutlineEye } from "react-icons/hi";
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
 
 const Hotel = styled.div`
   font-size: 1.6rem;
@@ -45,6 +48,8 @@ function BookingRow({
     hotels: { name: hotelName },
   },
 }) {
+  // 路由导航
+  const navigate = useNavigate();
   // 确认状态对应的标签颜色
   const statusToTagName = {
     unconfirmed: "blue",
@@ -73,10 +78,21 @@ function BookingRow({
           {format(new Date(endDate), "MMM dd yyyy")}
         </span>
       </Stacked>
-
       <Tag $type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-
       <Amount>{formatCurrency(totalPrice)}</Amount>
+
+      {/* 侧边栏按钮 */}
+      <Menus.Menu>
+        <Menus.Toggle id={bookingId} />
+        <Menus.List id={bookingId}>
+          <Menus.Button
+            icon={<HiOutlineEye />}
+            onClick={() => navigate(`/bookings/${bookingId}`)}
+          >
+            詳細
+          </Menus.Button>
+        </Menus.List>
+      </Menus.Menu>
     </Table.Row>
   );
 }

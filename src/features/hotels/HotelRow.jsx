@@ -4,7 +4,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { useCreateHotel } from "./useCreateHotel";
 import { useDeleteHotel } from "./useDeleteHotel";
 import {
-  HiDocumentDuplicate,
+  HiOutlineDuplicate,
   HiOutlinePencilAlt,
   HiOutlineTrash,
 } from "react-icons/hi";
@@ -99,7 +99,7 @@ function HotelRow({ hotel }) {
 
             <MenusProvider.List id={hotelId}>
               <MenusProvider.Button
-                icon={<HiDocumentDuplicate />}
+                icon={<HiOutlineDuplicate />}
                 onClick={handleDuplicate}
               >
                 コピー

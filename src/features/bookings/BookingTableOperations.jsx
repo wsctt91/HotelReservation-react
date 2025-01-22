@@ -2,17 +2,17 @@ import SortBy from "../../ui/SortBy";
 import Filter from "../../ui/Filter";
 import TableOperations from "../../ui/TableOperations";
 
-// 筛选&排序 Section
+// 预订筛选&排序 Section
 function BookingTableOperations() {
   return (
     <TableOperations>
       <Filter
         filterField="status"
         options={[
-          { value: "all", label: "All" },
-          { value: "checked-out", label: "Checked out" },
-          { value: "checked-in", label: "Checked in" },
-          { value: "unconfirmed", label: "Unconfirmed" },
+          { value: "all", label: "全部" },
+          { value: "checked-out", label: "チェックアウト" },
+          { value: "checked-in", label: "チェックイン" },
+          { value: "unconfirmed", label: "未確認" },
         ]}
       />
 
