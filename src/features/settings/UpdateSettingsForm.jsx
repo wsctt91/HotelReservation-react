@@ -2,7 +2,7 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Spinner from "../../ui/Spinner";
-import { useSetting } from "./useSetting";
+import { useSettings } from "./useSettings";
 import { useUpdateSetting } from "./useUpdateSetting";
 
 // 更新設定的表單
@@ -15,7 +15,7 @@ function UpdateSettingsForm() {
       maxGuestPerBooking,
       breakfastPrice,
     } = {},
-  } = useSetting();
+  } = useSettings();
 
   // 使用 useUpdateSetting hook 來更新 setting
   const { updateSetting, isUpdating } = useUpdateSetting();

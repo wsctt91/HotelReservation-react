@@ -33,11 +33,9 @@ function PageNotFound() {
   return (
     <StyledPageNotFound>
       <Box>
-        <Heading as="h1">
-          The page you are looking for could not be found 😢
-        </Heading>
+        <Heading as="h1">ページは見つかりませんでした 😢</Heading>
         <button onClick={moveBack} size="large">
-          &larr; Go back
+          &larr; 戻る
         </button>
       </Box>
     </StyledPageNotFound>

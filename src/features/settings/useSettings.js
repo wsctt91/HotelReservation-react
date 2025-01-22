@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getSettings } from "../../services/apiSettings";
 
 // 使用 useQuery hook 來获取 setting
-export function useSetting() {
+export function useSettings() {
   const {
     isLoading,
     error,

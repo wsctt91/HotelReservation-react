@@ -104,7 +104,7 @@ export async function getStaysTodayActivity() {
 
   if (error) {
     console.error(error);
-    throw new Error("Bookings could not get loaded");
+    throw new Error("予約を読み込むことができませんでした");
   }
   return data;
 }
@@ -119,7 +119,7 @@ export async function updateBooking(id, obj) {
 
   if (error) {
     console.error(error);
-    throw new Error("Booking could not be updated");
+    throw new Error("予約を更新できませんでした");
   }
   return data;
 }
@@ -130,7 +130,7 @@ export async function deleteBooking(id) {
 
   if (error) {
     console.error(error);
-    throw new Error("Booking could not be deleted");
+    throw new Error("予約を削除できませんでした");
   }
   return data;
 }

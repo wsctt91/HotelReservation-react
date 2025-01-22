@@ -5,9 +5,9 @@ const StyledCheckbox = styled.div`
   gap: 1.6rem;
 
   & input[type="checkbox"] {
-    height: 2.4rem;
-    width: 2.4rem;
-    outline-offset: 2px;
+    height: 1.8rem;
+    width: 1.8rem;
+    outline-offset: 1px;
     transform-origin: 0;
     accent-color: var(--color-brand-600);
   }
@@ -18,13 +18,13 @@ const StyledCheckbox = styled.div`
 
   & label {
     flex: 1;
-
     display: flex;
     align-items: center;
     gap: 0.8rem;
   }
 `;
 
+// 用户确认框
 function Checkbox({ checked, onChange, disabled = false, id, children }) {
   return (
     <StyledCheckbox>

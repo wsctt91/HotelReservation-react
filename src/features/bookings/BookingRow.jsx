@@ -3,7 +3,7 @@ import { format, isToday } from "date-fns";
 import Tag from "../../ui/Tag";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
-import { HiOutlineEye } from "react-icons/hi";
+import { HiOutlineEye, HiOutlineUserAdd } from "react-icons/hi";
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 
@@ -91,6 +91,14 @@ function BookingRow({
           >
             詳細
           </Menus.Button>
+          {status === "unconfirmed" && (
+            <Menus.Button
+              icon={<HiOutlineUserAdd />}
+              onClick={() => navigate(`/checkin/${bookingId}`)}
+            >
+              チェックイン
+            </Menus.Button>
+          )}
         </Menus.List>
       </Menus.Menu>
     </Table.Row>
