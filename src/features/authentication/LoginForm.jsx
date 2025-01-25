@@ -29,7 +29,7 @@ function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormRowVertical label="Email address">
+      <FormRowVertical label="メールアドレス">
         <Input
           type="email"
           id="email"
@@ -40,7 +40,7 @@ function LoginForm() {
           disabled={isLoading}
         />
       </FormRowVertical>
-      <FormRowVertical label="Password">
+      <FormRowVertical label="パスワード">
         <Input
           type="password"
           id="password"
@@ -52,7 +52,7 @@ function LoginForm() {
       </FormRowVertical>
       <FormRowVertical>
         <Button size="large" disabled={isLoading}>
-          {!isLoading ? "Login" : <SpinnerMini />}
+          {!isLoading ? "ログイン" : <SpinnerMini />}
         </Button>
       </FormRowVertical>
     </Form>

@@ -33,8 +33,10 @@ const Heading = styled.h1`
     ${(props) =>
     props.as === "h4" &&
     css`
+      font-family: “sf pro display”, “sf pro icons”, “helvetica neue”, helvetica,
+        arial, sans-serif;
       font-size: 2.5rem;
-      font-weight: 600;
+      font-weight: 700;
       color: #1d1d1d;
       text-align: center;
     `}
