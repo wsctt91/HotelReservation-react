@@ -11,8 +11,8 @@ export function useBooking() {
     data: booking,
     error,
   } = useQuery({
-    queryKey: ["booking", bookingId],
-    queryFn: () => getBooking(bookingId),
+    queryKey: ["booking", bookingId], // 查询键：酒店列表 + 酒店ID 作为查询键
+    queryFn: () => getBooking(bookingId), // 查询函数：获取酒店列表 getBooking 函数 + 酒店ID 作为参数
     retry: false,
   });
 

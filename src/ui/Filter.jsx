@@ -59,6 +59,7 @@ function Filter({ filterField, options }) {
 
   function handleClick(value) {
     searchParams.set(filterField, value);
+    // !Debug 如果当前页数不是第一页，点击筛选后，将页数设置为第一页
     if (searchParams.get("page")) searchParams.set("page", 1);
     setSearchParams(searchParams);
   }

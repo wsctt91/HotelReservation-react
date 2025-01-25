@@ -49,6 +49,7 @@ function CheckinBooking() {
   const optionalBreakfastPrice =
     settings.breakfastPrice * numNights * numGuests;
 
+  // 确认Checkin
   function handleCheckin() {
     if (!confirmPaid) return;
     if (addBreakfast) {

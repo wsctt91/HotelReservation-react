@@ -38,8 +38,8 @@ export function useBookings() {
   });
 
   // *PREFETCHING -> 预处理数据 --> 预加载下一页的数据
-  const pageCount = Math.ceil(count / PAGE_SIZE);
   // 防止超出页数，不会加载不存在的页数
+  const pageCount = Math.ceil(count / PAGE_SIZE);
   if (page < pageCount) {
     queryClient.prefetchQuery({
       queryKey: ["bookings", filter, sortBy, page + 1],

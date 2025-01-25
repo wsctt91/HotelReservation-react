@@ -2,6 +2,7 @@ import supabase from "./supabase";
 import { getToday } from "../utils/helpers";
 import { PAGE_SIZE } from "../utils/constants";
 
+// *apiBookings用来处理预和交互预定相关数据到supabase
 // 获取所有的预订
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
@@ -125,8 +126,12 @@ export async function updateBooking(id, obj) {
 }
 
 export async function deleteBooking(id) {
-  // REMEMBER RLS POLICIES
-  const { data, error } = await supabase.from("bookings").delete().eq("id", id);
+  // !记住：这里的.from().delete().eq().select()方法是删除数据的意思
+  const { data, error } = await supabase
+    .from("bookings")
+    .delete()
+    .eq("id", id)
+    .select();
 
   if (error) {
     console.error(error);

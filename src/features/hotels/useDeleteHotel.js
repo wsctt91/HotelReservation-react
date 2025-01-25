@@ -7,7 +7,7 @@ export function useDeleteHotel() {
   const queryClient = useQueryClient();
 
   // 删除酒店
-  const { isLoading: isDeleting, mutate: deleteHotel } = useMutation({
+  const { mutate: deleteHotel, isLoading: isDeleting } = useMutation({
     mutationFn: deleteHoteApi, // 删除酒店
     // !onSuccess表示在删除酒店成功后执行的回调函数
     onSuccess: () => {
@@ -18,5 +18,5 @@ export function useDeleteHotel() {
     },
     onError: (err) => toast.error(err.message),
   });
-  return { isDeleting, deleteHotel };
+  return { deleteHotel, isDeleting };
 }

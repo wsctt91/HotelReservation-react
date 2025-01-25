@@ -93,7 +93,7 @@ function HotelRow({ hotel }) {
       <div>
         {/* 复合组件的复用，让编辑和删除界面弹出 */}
         <Modal>
-          {/* 菜单栏选项卡 */}
+          {/* 侧边栏按钮 */}
           <MenusProvider.Menu>
             <MenusProvider.Toggle id={hotelId} />
 
@@ -104,13 +104,11 @@ function HotelRow({ hotel }) {
               >
                 コピー
               </MenusProvider.Button>
-
               <Modal.Open opens="edit">
                 <MenusProvider.Button icon={<HiOutlinePencilAlt />}>
                   編集
                 </MenusProvider.Button>
               </Modal.Open>
-
               <Modal.Open opens="delete">
                 <MenusProvider.Button icon={<HiOutlineTrash />}>
                   削除
@@ -118,12 +116,12 @@ function HotelRow({ hotel }) {
               </Modal.Open>
             </MenusProvider.List>
 
-            {/* 编辑弹出框 */}
+            {/* 编辑确认弹出框 */}
             <Modal.Window name="edit">
               <CreateHotelForm hotelToEdit={hotel} />
             </Modal.Window>
 
-            {/* 删除弹出框 */}
+            {/* 删除确认弹出框 */}
             <Modal.Window name="delete">
               <ConfirmDelete
                 resourceName="ルーム"
