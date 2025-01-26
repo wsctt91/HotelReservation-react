@@ -14,7 +14,7 @@ function Hotels() {
   return (
     <>
       <Row type="horizontal">
-        <Heading as="h1">プレミアム部屋リスト</Heading>
+        <Heading as="h4">プレミアム部屋リスト</Heading>
         {/* Filter & Sort部分 */}
         <HotelTableOperations />
       </Row>

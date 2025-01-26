@@ -4,7 +4,7 @@ import Heading from "../ui/Heading";
 function NewUsers() {
   return (
     <>
-      <Heading as="h1">新しいユーザーを作成みよう</Heading>
+      <Heading as="h4">新しいユーザーを作成みよう</Heading>
       <SignupForm />
     </>
   );

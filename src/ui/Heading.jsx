@@ -10,16 +10,14 @@ const Heading = styled.h1`
     props.as === "h1" &&
     css`
       font-size: 3rem;
-      font-weight: 700;
-      color: black;
+      font-weight: 600;
     `}
 
   ${(props) =>
     props.as === "h2" &&
     css`
       font-size: 2rem;
-      font-weight: 700;
-      color: black;
+      font-weight: 600;
     `}
 
     ${(props) =>
@@ -27,7 +25,6 @@ const Heading = styled.h1`
     css`
       font-size: 2rem;
       font-weight: 500;
-      color: black;
     `}
 
     ${(props) =>
@@ -36,9 +33,7 @@ const Heading = styled.h1`
       font-family: “sf pro display”, “sf pro icons”, “helvetica neue”, helvetica,
         arial, sans-serif;
       font-size: 2.5rem;
-      font-weight: 700;
-      color: #1d1d1d;
-      text-align: center;
+      font-weight: 600;
     `}
     
   line-height: 1.4;

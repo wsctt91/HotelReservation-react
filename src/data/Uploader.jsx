@@ -14,6 +14,7 @@ import { guests } from "./data-guests";
 //   breakfastPrice: 15,
 // };
 
+// *上传虚拟数据模块
 async function deleteGuests() {
   const { error } = await supabase.from("guests").delete().gt("id", 0);
   if (error) console.log(error.message);
@@ -139,6 +140,7 @@ function Uploader() {
         display: "flex",
         flexDirection: "column",
         gap: "8px",
+        color: "#333333",
       }}
     >
       <h3>データアップロード</h3>

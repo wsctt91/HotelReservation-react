@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// 该自定义hook用于将state保存在localStorage中
 export function useLocalStorageState(initialState, key) {
   const [value, setValue] = useState(function () {
     const storedValue = localStorage.getItem(key);

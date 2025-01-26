@@ -6,6 +6,7 @@ function fromToday(numDays, withTime = false) {
   return date.toISOString().slice(0, -1);
 }
 
+// 虚拟数据  ->  预约
 export const bookings = [
   // HOTEL 001
   {

@@ -2,6 +2,7 @@ import { supabaseUrl } from "../services/supabase";
 
 const imageUrl = `${supabaseUrl}/storage/v1/object/public/hotel-images/`;
 
+// 虚拟数据 -> 房间信息
 export const hotels = [
   {
     name: "001",
