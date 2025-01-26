@@ -24,6 +24,7 @@ function BookingTable() {
           <div></div>
         </Table.Header>
 
+        {/* 具体内容 */}
         <Table.Body
           data={bookings}
           render={(booking) => (
@@ -31,6 +32,7 @@ function BookingTable() {
           )}
         />
 
+        {/* 底部导航 */}
         <Table.Footer>
           <Pagination count={count} />
         </Table.Footer>

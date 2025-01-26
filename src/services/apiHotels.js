@@ -49,15 +49,14 @@ export async function CreateEditHotel(newHotel, id) {
   if (hasImagePath) {
     return data;
   }
-  // !需要修改 supabase-API改变
+  // ?需要修改 supabase-API改变
   const { error: storageError } = await supabase.storage
     .from("hotel-images")
     .upload(`public/${imageName}`, newHotel.image, {
       cacheControl: "3600",
       contentType: newHotel.image.type,
-      upsert: false,
+      upsert: true,
     });
-
   // 03.如果没有正确图片，则抛出错误
   if (storageError) {
     await supabase.from("hotels").delete().eq("id", data.id);

@@ -69,8 +69,8 @@ function CheckinBooking() {
   return (
     <>
       <Row type="horizontal">
-        <Heading as="h1">予約チェックイン #{bookingId}</Heading>
-        <ButtonText onClick={moveBack}>&larr; 戻る</ButtonText>
+        <Heading as="h1">予約チェックイン -{bookingId}</Heading>
+        {/* <ButtonText onClick={moveBack}>&larr; 戻る</ButtonText> */}
       </Row>
 
       {/* DATA页面 */}

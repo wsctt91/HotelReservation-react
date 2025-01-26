@@ -47,10 +47,10 @@ function BookingDetail() {
     <>
       <Row type="horizontal">
         <HeadingGroup>
-          <Heading as="h1">予約情報 #{bookingId}</Heading>
+          <Heading as="h1">予約情報 -{bookingId}</Heading>
           <Tag $type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
         </HeadingGroup>
-        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
+        {/* <ButtonText onClick={moveBack}>&larr; Back</ButtonText> */}
       </Row>
 
       {/* DATA页面 */}

@@ -10,8 +10,8 @@ function BookingTableOperations() {
         filterField="status"
         options={[
           { value: "all", label: "全部" },
-          { value: "checked-out", label: "チェックアウト" },
-          { value: "checked-in", label: "チェックイン" },
+          { value: "checked-in", label: "Checked-in" },
+          { value: "checked-out", label: "Checked-out" },
           { value: "unconfirmed", label: "未確認" },
         ]}
       />

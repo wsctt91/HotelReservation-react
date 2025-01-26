@@ -20,7 +20,7 @@ function CreateHotelForm({ hotelToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = hotelToEdit;
   const isEditSession = Boolean(editId);
 
-  // *useForm是一个自定义的Hook，它返回了一个对象，其中包含了register和handlerSubmit方法
+  // *useForm是一个自定义的Hook，它返回了一个对象，包含了我们需要的所有方法和属性
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: isEditSession ? editValues : {},
   });
@@ -87,7 +87,7 @@ function CreateHotelForm({ hotelToEdit = {}, onCloseModal }) {
             required: "この項目は必須です",
             min: {
               value: 1,
-              message: "Capacity must be at least 1",
+              message: "宿泊人数は少なくとも1である必要があります",
             },
           })}
         />
@@ -148,10 +148,10 @@ function CreateHotelForm({ hotelToEdit = {}, onCloseModal }) {
           // 点击按钮时，关闭模态框，如果没有传递onCloseModal，则不执行
           onClick={() => onCloseModal?.()}
         >
-          リセット
+          キャンセル
         </Button>
         <Button type="submit" disabled={isWorking}>
-          {isEditSession ? "Edit hotel" : "Create new hotel"}
+          {isEditSession ? "部屋を編集" : "新規追加"}
         </Button>
       </FormRow>
     </Form>
