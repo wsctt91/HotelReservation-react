@@ -6,9 +6,11 @@ import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
 import SpinnerMini from "../../ui/SpinnerMini";
 
+// 登录表单
 function LoginForm() {
-  const [email, setEmail] = useState("ttsc@example.com");
-  const [password, setPassword] = useState("123456");
+  // 可以传入邮箱和密码
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
 
   function handleSubmit(e) {

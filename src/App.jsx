@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { DarkModeProvider } from "./context/DarkModeContext";
-
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./pages/Dashboard";
 import Bookings from "./pages/Bookings";
@@ -32,7 +31,6 @@ function App() {
       <QueryClientProvider client={queryClient}>
         {/* 这个组件可以帮助我们在开发过程中查看缓存的状态 */}
         <ReactQueryDevtools initialIsOpen={false} />
-
         <GlobalStyles />
         <BrowserRouter>
           <Routes>

@@ -8,7 +8,7 @@ function Dashboard() {
   return (
     <>
       <Row type="horizontal">
-        <Heading as="h4">Dashboard</Heading>
+        <Heading as="h4">ホームページ</Heading>
         <DashboardFilter />
       </Row>
       <DashboardLayout />

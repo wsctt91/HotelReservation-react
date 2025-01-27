@@ -28,8 +28,8 @@ function TodayItem({ activity }) {
   const { id, status, guests, numNights } = activity;
   return (
     <StyledTodayItem>
-      {status === "unconfirmed" && <Tag $type="green">Arriving</Tag>}
-      {status === "checked-in" && <Tag $type="blue">Departing</Tag>}
+      {status === "unconfirmed" && <Tag $type="green">到着</Tag>}
+      {status === "checked-in" && <Tag $type="blue">出発</Tag>}
 
       <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} />
       <Guest>{guests.fullName}</Guest>
@@ -42,7 +42,7 @@ function TodayItem({ activity }) {
           as={Link}
           to={`/checkin/${id}`}
         >
-          チェックイン
+          Check-in
         </Button>
       )}
       {status === "checked-in" && <CheckoutButton bookingId={id} />}

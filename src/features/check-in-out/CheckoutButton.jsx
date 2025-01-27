@@ -3,6 +3,7 @@ import { useCheckout } from "./useCheckout";
 
 function CheckoutButton({ bookingId }) {
   const { checkout, isCheckingOut } = useCheckout();
+
   return (
     <Button
       variation="primary"
@@ -10,7 +11,7 @@ function CheckoutButton({ bookingId }) {
       onClick={() => checkout(bookingId)}
       disabled={isCheckingOut}
     >
-      チェックアウト
+      {isCheckingOut ? "Checking out..." : "Check-out"}
     </Button>
   );
 }

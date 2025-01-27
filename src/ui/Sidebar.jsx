@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import MainNav from "./MainNav";
-import Uploader from "../data/Uploader";
 import { useNavigate } from "react-router-dom";
+// import Uploader from "../data/Uploader";
 
 const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
@@ -24,7 +24,8 @@ function Sidebar() {
         style={{ cursor: "pointer" }}
       />
       <MainNav />
-      <Uploader />
+      {/* 自动上传 */}
+      {/* <Uploader /> */}
     </StyledSidebar>
   );
 }

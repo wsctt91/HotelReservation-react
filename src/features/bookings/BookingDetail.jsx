@@ -4,7 +4,6 @@ import Heading from "../../ui/Heading";
 import Tag from "../../ui/Tag";
 import ButtonGroup from "../../ui/ButtonGroup";
 import Button from "../../ui/Button";
-import ButtonText from "../../ui/ButtonText";
 import BookingDataBox from "./BookingDataBox";
 import Spinner from "../../ui/Spinner";
 import Modal from "../../ui/Modal";
@@ -15,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { HiOutlineUserRemove } from "react-icons/hi";
 import { useCheckout } from "../check-in-out/useCheckout";
 import { useDeleteBooking } from "./useDeleteBooking";
+import Empty from "../../ui/Empty";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -33,6 +33,9 @@ function BookingDetail() {
 
   if (isLoading) {
     return <Spinner />;
+  }
+  if (!booking) {
+    return <Empty resourceName="booking" />;
   }
 
   const { status, id: bookingId } = booking;

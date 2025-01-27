@@ -5,7 +5,13 @@ import { useLocalStorageState } from "../hooks/useLocalStorageState";
 const DarkModeContext = createContext();
 
 function DarkModeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, "isDarkMode");
+  /*   false表示默认为浅色模式 */
+  // const [isDarkMode, setIsDarkMode] = useLocalStorageState(false, "isDarkMode");
+  /* 根据系统颜色调整模式 */
+  const [isDarkMode, setIsDarkMode] = useLocalStorageState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches,
+    "isDarkMode"
+  );
   // 使用useEffect监听isDarkMode的变化，如果isDarkMode为true，则给document.documentElement添加dark-mode类名，移除light-mode类名
   useEffect(
     function () {
