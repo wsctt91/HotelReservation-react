@@ -47,6 +47,7 @@ const Value = styled.p`
   font-weight: 500;
 `;
 
+// 统计数据用小组件 -> 小方格
 function Stat({ icon, title, value, color }) {
   return (
     <StyledStat>

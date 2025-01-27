@@ -6,9 +6,11 @@ import { getStaysAfterDate } from "../../services/apiBookings";
 // 获取最近的预订
 export function useRecentStays() {
   const [searchParams] = useSearchParams();
+
   const numDays = !searchParams.get("last")
     ? 7
     : Number(searchParams.get("last"));
+
   const queryDate = subDays(new Date(), numDays).toISOString();
 
   const { isLoading, data: stays } = useQuery({
@@ -21,5 +23,5 @@ export function useRecentStays() {
     (stay) => stay.status === "checked-in" || stay.status === "checked-out"
   );
 
-  return { isLoading, stays, confirmStays };
+  return { isLoading, stays, confirmStays, numDays };
 }
