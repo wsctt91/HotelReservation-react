@@ -22,25 +22,25 @@ function Stats({ bookings, confirmedStays, numDays, hotelCount }) {
   return (
     <>
       <Stat
-        title="bookings"
+        title="予約情報"
         color="blue"
         icon={<HiClipboardList />}
         value={numbookings}
       />
       <Stat
-        title="Sales"
+        title="総売上高"
         color="green"
         icon={<HiCash />}
         value={formatCurrency(sales)}
       />
       <Stat
-        title="Check-ins"
+        title="チェックイン"
         color="indigo"
         icon={<HiClipboardCheck />}
         value={checkins}
       />{" "}
       <Stat
-        title="Occupancy rate"
+        title="稼働率"
         color="yellow"
         icon={<HiChartBar />}
         value={Math.round(occupation * 100) + "%"}
