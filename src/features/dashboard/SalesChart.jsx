@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import DashboardBox from "./DashboardBox";
+import Heading from "../../ui/Heading";
 import {
   Area,
   AreaChart,
@@ -8,8 +10,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import DashboardBox from "./DashboardBox";
-import Heading from "../../ui/Heading";
 import { useDarkMode } from "../../context/DarkModeContext";
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
 

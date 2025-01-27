@@ -56,7 +56,7 @@ const Discount = styled.div`
 // 酒店列表 -> row
 function HotelRow({ hotel }) {
   const { isDeleting, deleteHotel } = useDeleteHotel();
-  const { createHotel } = useCreateHotel();
+  const { isCreating, createHotel } = useCreateHotel();
   const {
     id: hotelId,
     name,
@@ -101,14 +101,17 @@ function HotelRow({ hotel }) {
               <MenusProvider.Button
                 icon={<HiOutlineDuplicate />}
                 onClick={handleDuplicate}
+                disabled={isCreating}
               >
                 コピー
               </MenusProvider.Button>
+
               <Modal.Open opens="edit">
                 <MenusProvider.Button icon={<HiOutlinePencilAlt />}>
                   編集
                 </MenusProvider.Button>
               </Modal.Open>
+
               <Modal.Open opens="delete">
                 <MenusProvider.Button icon={<HiOutlineTrash />}>
                   削除
