@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
+import Stats from "./Stats";
+import SalesChart from "./SalesChart";
+import DurationChart from "./DurationChart";
 import { useRecentBookings } from "./useRecentBookings";
 import { useRecentStays } from "./useRecentStays";
-import Stats from "./Stats";
 import { useHotels } from "../hotels/useHotels";
-import SalesChart from "./SalesChart";
+import TodayActivity from "../check-in-out/TodayActivity";
 
 const StyledDashboardLayout = styled.div`
   display: grid;
@@ -18,8 +20,7 @@ function DashboardLayout() {
   const { isLoading: RecentBookingsIsLoading, bookings } = useRecentBookings();
   const {
     isLoading: RecentStaysIsLoading,
-    stays,
-    confirmStays,
+    confirmedStays,
     numDays,
   } = useRecentStays();
   const { hotels, isLoading: hotelsIsLoading } = useHotels();
@@ -34,12 +35,18 @@ function DashboardLayout() {
       {/* 数据 */}
       <Stats
         bookings={bookings}
-        confirmedStays={confirmStays}
+        confirmedStays={confirmedStays}
         numDays={numDays}
         hotelCount={hotels.length}
       />
 
-      {/* 图表统计 */}
+      {/* 活动数据 */}
+      <TodayActivity />
+
+      {/* 饼状图表 */}
+      <DurationChart confirmedStays={confirmedStays} />
+
+      {/* 销售图表统计 */}
       <SalesChart bookings={bookings} numDays={numDays} />
     </StyledDashboardLayout>
   );

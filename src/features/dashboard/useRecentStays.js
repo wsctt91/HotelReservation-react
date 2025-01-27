@@ -19,9 +19,9 @@ export function useRecentStays() {
   });
 
   // 过滤出已入住和已退房的住宿
-  const confirmStays = stays?.filter(
+  const confirmedStays = stays?.filter(
     (stay) => stay.status === "checked-in" || stay.status === "checked-out"
   );
 
-  return { isLoading, stays, confirmStays, numDays };
+  return { isLoading, stays, confirmedStays, numDays };
 }
