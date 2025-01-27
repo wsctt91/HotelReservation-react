@@ -17,7 +17,7 @@ function Login() {
   return (
     <LoginLayout>
       <Logo />
-      <Heading as="h4">ログイン</Heading>
+      <Heading as="h4">ログインしてください</Heading>
       <LoginForm />
     </LoginLayout>
   );

@@ -5,7 +5,7 @@ import UpdateSettingsForm from "../features/settings/UpdateSettingsForm";
 function Settings() {
   return (
     <Row>
-      <Heading as="h1">Update hotel settings</Heading>
+      <Heading as="h1">ホテル詳細設定</Heading>
       <UpdateSettingsForm />
     </Row>
   );

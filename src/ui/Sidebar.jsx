@@ -19,10 +19,7 @@ function Sidebar() {
 
   return (
     <StyledSidebar>
-      <Logo
-        onClick={() => navigate("/dashboard")}
-        style={{ cursor: "pointer" }}
-      />
+      <Logo onClick={() => navigate("/dashboard")} />
       <MainNav />
       {/* 自动上传 */}
       {/* <Uploader /> */}

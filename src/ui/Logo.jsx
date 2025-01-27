@@ -10,15 +10,13 @@ const Img = styled.img`
   width: auto;
 `;
 
-function Logo({ onClick, style }) {
+function Logo({ onClick }) {
   const { isDarkMode } = useDarkMode();
-  const src = isDarkMode
-    ? "/public/logo02-dark.png"
-    : "/public/logo02-light.png";
+  const src = isDarkMode ? "/logo-dark.png" : "/logo-light.png";
 
   return (
     <StyledLogo>
-      <Img src={src} alt="Logo" onClick={onClick} style={style} />
+      <Img src={src} alt="Logo" onClick={onClick} />
     </StyledLogo>
   );
 }
